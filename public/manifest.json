@@ -81,8 +81,7 @@
         "sizes": "16x16"
       }
   ],
-  "start_url": "https://plan.littleson.com.br/",
-  "scope": "/",
+  "start_url": "/",
   "shortcuts": [
     {
       "name": "Leitura Bíblica de hoje",
