@@ -70,6 +70,18 @@ export default function Episode({ episode }: EpisodeProps ) {
         />
       </div>
 
+      <section className={styles.cta}>
+        <header>
+          <h4>Seja um(a) apoiador(a)</h4>
+
+        </header>
+        <div>
+          <a href="https://apoie.littleson.com.br" title="Apoie" className={styles.subscribe}>
+            Apoiar com R$ 1,99/mês
+          </a> 
+        </div>
+      </section>
+
       <PageWithComments/>
     </div>
   </>
