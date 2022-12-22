@@ -14,7 +14,7 @@ export class PageWithComments extends React.Component {
     render() {
         return (
             <>
-            <div className={styles.commentbox} />
+            <div className={"commentbox" + styles.comments} />
             </>
         );
     }
