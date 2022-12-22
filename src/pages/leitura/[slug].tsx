@@ -76,7 +76,7 @@ export default function Episode({ episode }: EpisodeProps ) {
 
         </header>
         <div>
-          <a href="https://apoie.littleson.com.br" title="Apoie" className={styles.subscribe}>
+          <a href="https://go.littleson.com.br/apoiar" title="Apoie" rel="noreferrer noopener" className={styles.subscribe}>
             Apoiar com R$ 1,99/mês
           </a> 
         </div>
