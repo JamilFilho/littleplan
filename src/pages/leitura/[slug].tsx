@@ -1,26 +1,26 @@
-import { format, parseISO } from "date-fns";
-import { ptBR } from "date-fns/locale";
+import { format, parseISO } from "date-fns"
+import { ptBR } from "date-fns/locale"
 import { GetStaticPaths, GetStaticProps } from "next"
-import Image from "next/image";
-import Link from "next/link";
 import { api } from "../../services/api"
-import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString";
+import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString"
 import styles from './episode.module.scss'
-
 import { useRouter } from 'next/router'
-import { usePlayer } from "../../contexts/PlayerContext";
-import Head from "next/head";
+import { usePlayer } from "../../contexts/PlayerContext"
+import Head from "next/head"
+import { FiPlayCircle, FiDownload } from "react-icons/fi"
+import commentBox from 'commentbox.io'
+import {PageWithComments} from '../../components/Comment'
 
 type Episode = {
   id: string;
   title: string;
   thumbnail: string;
   description: string;
-  members: string;
   duration: number;
   durationAsString: string;
   url: string;
   publishedAt: string;
+  content: string
 }
 
 type EpisodeProps = {
@@ -36,43 +36,43 @@ export default function Episode({ episode }: EpisodeProps ) {
   }
 
   return (
+    <>
+    <Head>
+      <title>{episode.title} | Podcastr</title>
+    </Head>
+    
     <div className={styles.episode}>
-      <Head>
-        <title>{episode.title} | Podcastr</title>
-      </Head>
+      <div className={styles.inner}>
+        <header>
+          <h1>{episode.title}</h1>
+          <p>{episode.description}</p>
+          <span><strong>Publicado em:</strong> {episode.publishedAt}</span>
+          <span><strong>Duração:</strong> {episode.durationAsString}</span>
+        </header>
+        
 
-      <div className={styles.thumbnailContainer}>
-        <Link href="/">
-          <button>
-            <img src="/arrow-left.svg" alt="Voltar"/>
+        <div className={styles.buttons}>
+          <button className={styles.play} onClick={() => play(episode)}>
+            <FiPlayCircle />
+            Ouvir leitura
           </button>
-        </Link>
-        <Image
-          width={700}
-          height={160}
-          src={episode.thumbnail}
-          objectFit="cover"
+          <a href={episode.url} className={styles.download} download={episode.id}>
+            <FiDownload />
+          </a>
+        </div>
+
+        <div
+          className={styles.content}
+          dangerouslySetInnerHTML={{
+            __html:
+            episode.content
+          }} 
         />
-        <button onClick={() => play(episode)}>
-          <img src="/play.svg" alt="Tocar episódio"/>
-        </button>
       </div>
 
-      <header>
-        <h1>{episode.title}</h1>
-        <span>{episode.members}</span>
-        <span>{episode.publishedAt}</span>
-        <span>{episode.durationAsString}</span>
-      </header>
-
-      <div
-        className={styles.description}
-        dangerouslySetInnerHTML={{
-          __html:
-          episode.description
-        }} 
-      />
+      <PageWithComments/>
     </div>
+  </>
   )
 }
 
@@ -106,13 +106,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     id: data.id,
     title: data.title,
     thumbnail: data.thumbnail,
-    members: data.members,
-    publishedAt: format(parseISO(data.published_at), 'd MMM yy', { 
+    publishedAt: format(parseISO(data.published_at), 'd MMMM yyyy', { 
       locale: ptBR
     }),
     duration: Number(data.file.duration),
     durationAsString: convertDurationToTimeString(Number(data.file.duration)),
     description: data.description,
+    content:data.content,
     url: data.file.url,
   }
 

@@ -1,33 +1,57 @@
 .playerContainer {
-  padding: 3rem 4rem;
-  width: 26.5rem;
-  height: 100vh;
-
-  background: var(--purple-500);
+  width:100vw;
+  height: 20vh;
   color: var(--white);
-
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  background-color:rgb(27, 27, 27);
+
+  @media screen and (min-width:1000px) {
+    position:relative;
+  }
 
   header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    display: none;
+
+    @media screen and (min-width:1000px) {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
   }
 
   strong {
     font-family: Lexand, sans-serif;
     font-weight: 600;
+
+    @media screen and (min-width:1000px) {
+      font-family: Lexand, sans-serif;
+      font-weight: 600;
+    }
   }
 
   footer {
-    align-self: stretch;
-
+    padding:0 1rem 0 0;
     &.empty .progress {
       opacity: 0.5;
     }
+
+    @media screen and (min-width:1000px) {
+      margin:0;
+      padding:0;
+    }
+  }
+
+  @media screen and (min-width:1000px) {
+    padding: 3rem 4rem;
+    height: 100vh;
+    width:30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 
@@ -35,14 +59,26 @@
   text-align: center;
 
   img {
+    width: 8rem;
+    height: 8rem;
     border-radius: 1.5rem;
+
+    @media screen and (min-width:1000px) {
+      width: 100%;
+      height: 35vh;
+    }
   }
 
   strong {
-    display: block;
+    display: none;
+    
     margin-top: 2rem;
     font: 600 1.25rem Lexand, sans-serif;
     line-height: 1.75rem;
+    
+    @media screen and (min-width:1000px) {
+      display: block;
+    }
   }
 
   span {
@@ -54,18 +90,23 @@
 }
 
 .emptyPlayer {
-  width: 100%;
-  height: 20rem;
-  border: 1.5px dashed var(--purple-300);
+  width: 10rem;
+  height: 10rem;
+  border: 1.5px dashed rgb(70, 70, 70);
   border-radius: 1.5rem;
-  background: linear-gradient(143.8deg, rgba(145, 100, 250, 0.8) 0%, rgba(0,0,0,0) 100%);
-
-  padding: 4rem;
-  text-align: center;
-
+  background-color:rgb(20, 20, 20);
+  padding:1rem;
+  font-size:1rem;
+  text-align:center;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (min-width:1000px) {
+      width: 100%;
+      height: 45vh;    
+      padding: 4rem;
+  }
 }
 
 .progress {
@@ -78,15 +119,18 @@
     display: inline-block;
     width: 4rem;
     text-align: center;
+    margin-bottom:1rem;
   }
 
   .slider {
     flex: 1;
 
+    margin-bottom:1rem;
+
     .emptySlider {
       width: 100%;
       height: 4px;
-      background: var(--purple-300);
+      background:rgba(0,0,0,.8);
       border-radius: 2px;
     }
   }
@@ -96,41 +140,52 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2.5rem;
-  gap: 1.5rem;
+  gap: 1.4rem;
+
+  @media screen and (min-width:1000px) {
+    margin-top: 2.5rem;
+    gap: 1.5rem;
+  }
+
 
   button {
+    font-size:1.4rem;
+    border:none;
+    color:#ffffff;
     background: transparent;
-    border: 0;
-    font-size: 0;
-    transition: filter 0.2s;
+    transition: all 0.2s;
+    
+    @media screen and (min-width:1000px) {
+      font-size:1.4rem;
+    }
     
     &:disabled {
       cursor: default;
       opacity: 0.5;
     }
 
-    &:hover:not(:disabled) {
-      filter: brightness(0.7)
-    }
-
     &.isActive {
-      filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg)
+      color:#4588f6;
     }
 
     &.isActive:hover {
-      filter: brightness(0.6) invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
+      color:#3b75d3;
     }
 
     &.playButton {
-      width: 4rem;
-      height: 4rem;
-      border-radius: 1rem;
-      background: var(--purple-400);
-      transition: filter 0.2s;
+      width:4rem;
+      height:4rem;
+      font-size:2.4rem;
+      display: flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 2rem;
+      background-color:#4588f6;
+      transition: all 0.2s;
 
       &:hover {
-        filter: brightness(0.95)
+        color:#ffffff;
+        background-color:#3b75d3;
       }
     }
   }

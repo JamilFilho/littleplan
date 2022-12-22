@@ -1,13 +1,11 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { usePlayer } from '../../contexts/PlayerContext'
-
 import Slider from 'rc-slider'
-
 import 'rc-slider/assets/index.css'
-
 import styles from './styles.module.scss'
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'
+import { FiShuffle, FiSkipBack, FiSkipForward, FiPlayCircle, FiPauseCircle, FiRepeat } from 'react-icons/fi'
 
 export function Player() {
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -68,25 +66,19 @@ export function Player() {
 
   return (
     <div className={styles.playerContainer}>
-      <header>
-        <img src="/playing.svg" alt="Tocando agora" />
-        <strong>Tocando agora</strong>
-      </header>
-      
       { episode ? (
         <div className={styles.currentEpisode}>
           <Image
-            width={592}
-            height={592}
+            width={500}
+            height={500}
             src={episode.thumbnail}
             objectFit="cover" 
           />
           <strong>{episode.title}</strong>
-          <span>{episode.members}</span>
         </div>
       ): (
         <div className={styles.emptyPlayer}> 
-          <strong>Selecione um podcast para ouvir</strong>
+          <strong>Selecione uma leitura para ouvir</strong>
         </div>
       ) }
 
@@ -97,9 +89,9 @@ export function Player() {
           <div className={styles.slider}>
             {episode ? (
               <Slider 
-                trackStyle={{ backgroundColor: '#04d361' }}
-                railStyle={{ backgroundColor: '#9f75ff' }}
-                handleStyle={{ borderBlockColor: '#04d361', borderWidth: 4 }}
+                trackStyle={{ backgroundColor: '#4588f6' }}
+                railStyle={{ backgroundColor: 'rgba(0,0,0,.8)' }}
+                dotStyle={{ backgroundColor: '#4588f6'}}
                 onChange={handleSeek}
                 max={episode.duration}
                 value={progress}
@@ -131,10 +123,10 @@ export function Player() {
             onClick={toggleShuffle}
             className={isShuffling ? styles.isActive : ''}
           >
-            <img src="/shuffle.svg" alt="Embaralhar"/>
+            <FiShuffle />
           </button>
           <button type="button" disabled={!episode || !hasPrevious} onClick={playPrevious}>
-            <img src="/play-previous.svg" alt="Tocar anterior"/>
+            <FiSkipBack />
           </button>
           <button
             type="button"
@@ -143,13 +135,13 @@ export function Player() {
             onClick={togglePlay}
           >
             { isPlaying ? (
-              <img src="/pause.svg" alt="Pausar"/>
+              <FiPauseCircle />
             ): (
-              <img src="/play.svg" alt="Tocar"/>
+              <FiPlayCircle />
             )}
           </button>
           <button type="button" disabled={!episode || !hasNext} onClick={playNext}>
-            <img src="/play-next.svg" alt="Tocar próximo"/>
+            <FiSkipForward />
           </button>
           <button
             type="button"
@@ -157,7 +149,7 @@ export function Player() {
             onClick={toggleLoop}
             className={isLooping ? styles.isActive : ''}
           >
-            <img src="/repeat.svg" alt="Repetir"/>
+            <FiRepeat />
           </button>
         </div>
       </footer>

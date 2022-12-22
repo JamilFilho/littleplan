@@ -1,23 +1,19 @@
 import { GetServerSideProps } from "next"
-
-import Image from 'next/image'
 import Link from 'next/link'
-
 import { api } from "../services/api"
-
 import { format, parseISO } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
 import { convertDurationToTimeString } from "../utils/convertDurationToTimeString"
-
 import styles from './home.module.scss';
 import { usePlayer } from "../contexts/PlayerContext"
 import Head from "next/head"
+import { FiPlayCircle } from "react-icons/fi"
 
 type Episode = {
   id: string;
   title: string;
   thumbnail: string;
-  members: string;
+  description: string;
   duration: number;
   durationAsString: string;
   url: string;
@@ -34,86 +30,57 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
   const episodeList = [...latestEpisodes, ...allEpisodes];
 
-
   return (
+    <>
+    <Head>
+      <title>Home | #LittlePlan</title>
+    </Head>
+    
     <div className={styles.homepage}>
-      <Head>
-        <title>Home | Podcastr</title>
-      </Head>
-      <section className={styles.latestEpisodes}>
-        <h2>Últimos lançamentos</h2>
+      <div className={styles.inner}>
+        <section className={styles.latestEpisodes}>
+          <h2>Leitura de hoje</h2>
 
-        <ul>
-          {latestEpisodes.map((episode, index) => (
+          <ul>
+            {latestEpisodes.map((episode, index) => (
+              <li key={episode.id}>
+                <div className={styles.episodeDetails}>
+                  <Link href={`/leitura/${episode.id}`} passHref>
+                    <a>{episode.title}</a>
+                  </Link>
+                  <p>{episode.description}</p>
+                  <span>{episode.publishedAt}</span>
+                  <span>{episode.durationAsString}</span>
+                </div>
+
+                <button type="button" onClick={() => playList(episodeList, index)}>
+                  <FiPlayCircle />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className={styles.allEpisodes}>
+          <h2>Leituras passadas</h2>
+          <ul>
+            {allEpisodes.map((episode, index) => (
             <li key={episode.id}>
-              <Image 
-                width={192}
-                height={192}
-                src={episode.thumbnail} 
-                alt={episode.title}
-                objectFit="cover"
-              />
-
-              <div className={styles.episodeDetails}>
-                <Link href={`/episodes/${episode.id}`} passHref>
-                  <a>{episode.title}</a>
-                </Link>
-                <p>{episode.members}</p>
-                <span>{episode.publishedAt}</span>
-                <span>{episode.durationAsString}</span>
-              </div>
-
-              <button type="button" onClick={() => playList(episodeList, index)}>
-                <img src="/play-green.svg" alt="Tocar episódio"/>
+              <Link href={`/leitura/${episode.id}`} passHref>
+                <a href={`/leitura/${episode.id}`}>{episode.title}</a>
+              </Link>
+              <p>{episode.publishedAt}</p>
+              <p>{episode.durationAsString}</p>
+              <button onClick={() => playList(episodeList, index + latestEpisodes.length)}>
+                <FiPlayCircle />
               </button>
             </li>
-          ))}
-        </ul>
-      </section>
-      <section className={styles.allEpisodes}>
-        <h2>Todos episódios</h2>
-        <table cellSpacing={0}>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Podcast</th>
-                <th>Integrantes</th>
-                <th>Duração</th>
-                <th></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {allEpisodes.map((episode, index) => (
-                <tr key={episode.id}>
-                  <td style={{ width: 72 }}>
-                    <Image 
-                      width={120}
-                      height={120}
-                      src={episode.thumbnail} 
-                      alt={episode.title}
-                      objectFit="cover"
-                    />
-                  </td>
-                  <td>
-                    <Link href={`/episodes/${episode.id}`} passHref>
-                      <a href={`/episodes/${episode.id}`}>{episode.title}</a>
-                    </Link>
-                  </td>
-                  <td>{episode.members}</td>
-                  <td style={{ width: 100 }}>{episode.publishedAt}</td>
-                  <td>{episode.durationAsString}</td>
-                  <td>
-                    <button type="button" onClick={() => playList(episodeList, index + latestEpisodes.length)}>
-                      <img src="/play-green.svg" alt="Tocar episódio" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-        </table>
-      </section>
+            ))}
+          </ul>
+        </section>
+      </div>
     </div>
+  </>
   )
 }
 
@@ -130,7 +97,7 @@ export const getStaticProps: GetServerSideProps = async () => {
     id: episode.id,
     title: episode.title,
     thumbnail: episode.thumbnail,
-    members: episode.members,
+    description: episode.description,
     publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { 
       locale: ptBR
     }),
@@ -139,8 +106,8 @@ export const getStaticProps: GetServerSideProps = async () => {
     url: episode.file.url,
   }))
 
-  const latestEpisodes = episodes.slice(0, 2);
-  const allEpisodes = episodes.slice(2, episodes.length)
+  const latestEpisodes = episodes.slice(0, 1);
+  const allEpisodes = episodes.slice(1, episodes.length)
 
   return {
     props: {

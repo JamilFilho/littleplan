@@ -1,13 +1,24 @@
 .headerContainer {
-  background: var(--white);
-  height: 6.5rem;
-
+  height: 10vh;
+  padding:2rem;
   display: flex;
   align-items: center;
-
-  padding: 2rem 4rem;
-
   border-bottom: 1px solid var(--gray-100);
+  background: var(--white);
+  
+  @media screen and (min-width:1000px) {
+    height: 15vh;
+    padding: 2rem 4rem;
+  }
+
+  img {
+    width:10rem;
+    cursor: pointer;
+    
+    @media screen and (min-width:1000px) {
+      width:163px;
+    }
+  }
 
   p {
     margin-left: 2rem;
@@ -16,7 +27,12 @@
   }
 
   span {
+    display: none;
     margin-left: auto;
     text-transform: capitalize;
+
+    @media screen and (min-width:1000px) {
+      display: flex;
+    }
   }
 }
