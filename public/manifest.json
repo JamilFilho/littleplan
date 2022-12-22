@@ -81,15 +81,14 @@
         "sizes": "16x16"
       }
   ],
-  "id": "/?source=pwa",
-  "start_url": "/?source=pwa",
+  "start_url": "https://plan.littleson.com.br/",
   "scope": "/",
   "shortcuts": [
     {
       "name": "Leitura Bíblica de hoje",
       "short_name": "Leitura do dia",
       "description": "Escute a leitura bíblica de hoje",
-      "url": "/",
+      "url": "https://plan.littleson.com.br/",
       "icons": [{ "src": "/icons/android-icon-192-192.png", "sizes": "192x192" }]
     }
   ],
