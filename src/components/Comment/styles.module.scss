@@ -1,6 +1,10 @@
 .comments {
-    width:80%;
+    width:90%;
     margin:4rem auto 2rem;
     border-top:thin solid var(--gray-100);
     padding:2rem 1rem 2rem;
+
+    @media screen and (min-width:1000px) {
+        width:80%;
+    }
 }
