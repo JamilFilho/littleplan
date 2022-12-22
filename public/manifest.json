@@ -81,8 +81,8 @@
         "sizes": "16x16"
       }
   ],
-  "id": "/?source=pwa",
-  "start_url": "/?source=pwa",
+  "id": "/",
+  "start_url": "/",
   "scope": "/",
   "shortcuts": [
     {
