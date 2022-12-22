@@ -9,6 +9,7 @@
     "server": "json-server db.json -w -d 750 -p 3333"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.6",
     "axios": "^0.21.1",
     "commentbox.io": "^2.1.0",
     "date-fns": "^2.21.1",
