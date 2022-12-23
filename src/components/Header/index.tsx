@@ -16,7 +16,7 @@ export function Header() {
       
       <p>Leia a Bíblia em 365 dias</p>
 
-      <span>{currentDate}</span>
+      <span>feito com ❤</span>
     </header>
   )
 }
