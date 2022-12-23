@@ -1,0 +1,32 @@
+.reactions {
+    width:80%;
+    margin:2rem auto 2rem;
+    padding:2rem 0 2rem;
+    border-top:thin solid var(--gray-100);
+    font-size:1.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .reactionButtons {
+        width:40%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    // button {
+    //     width:2rem;
+    //     height:2rem;
+        
+    //     display:flex;
+    //     flex-direction: row;
+    //     justify-content:center;
+    //     align-items:center;
+    //     border-radius:2rem;
+    //     border:none;
+    //     background-color:var(--gray-100);
+    // }
+}

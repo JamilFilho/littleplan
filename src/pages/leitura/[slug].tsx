@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { usePlayer } from "../../contexts/PlayerContext"
 import Head from "next/head"
 import { FiPlayCircle, FiDownload } from "react-icons/fi"
-import commentBox from 'commentbox.io'
+import {Reactions} from '../../components/Reactions'
 import {PageWithComments} from '../../components/Comment'
 
 type Episode = {
@@ -56,6 +56,7 @@ export default function Episode({ episode }: EpisodeProps ) {
             <FiPlayCircle />
             Ouvir leitura
           </button>
+          
           <a href={episode.url} className={styles.download} download={episode.id}>
             <FiDownload />
           </a>
@@ -70,10 +71,11 @@ export default function Episode({ episode }: EpisodeProps ) {
         />
       </div>
 
+      <Reactions buttonId={episode.id}/>
+
       <section className={styles.cta}>
         <header>
           <h4>Seja um(a) apoiador(a)</h4>
-
         </header>
         <div>
           <a href="https://go.littleson.com.br/apoiar" title="Apoie" rel="noreferrer noopener" className={styles.subscribe}>

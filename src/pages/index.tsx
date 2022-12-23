@@ -7,7 +7,7 @@ import { convertDurationToTimeString } from "../utils/convertDurationToTimeStrin
 import styles from './home.module.scss';
 import { usePlayer } from "../contexts/PlayerContext"
 import Head from "next/head"
-import { FiPlayCircle } from "react-icons/fi"
+import { FiPlayCircle, FiDownload } from "react-icons/fi"
 
 type Episode = {
   id: string;
@@ -59,6 +59,17 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className={styles.plannerDonwload}>
+          <header>
+            <h4>Baixe e imprima o plano de leitura</h4>
+          </header>
+          <div>
+            <a href="" title="Apoie" rel="noreferrer noopener" className={styles.download}>
+              <FiDownload /> Faça download do pdf
+            </a> 
+          </div>
         </section>
 
         <section className={styles.allEpisodes}>

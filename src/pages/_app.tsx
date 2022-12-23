@@ -4,6 +4,7 @@ import { Header } from '../components/Header'
 import { Player } from '../components/Player'
 import styles from '../styles/app.module.scss'
 import { PlayerContextProvider } from '../contexts/PlayerContext'
+import { Provider } from '@lyket/react'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -12,13 +13,15 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width" />
       </Head>
       <PlayerContextProvider>
-        <div className={styles.wrapper}>
-          <main>
-            <Header />
-            <Component {...pageProps} />
-          </main>
-          <Player />
-        </div>
+        <Provider apiKey={process.env.API_KEY_LYKET}>
+          <div className={styles.wrapper}>
+            <main>
+              <Header />
+              <Component {...pageProps} />
+            </main>
+            <Player />
+          </div>
+        </Provider>
       </PlayerContextProvider>
     </>
   )
