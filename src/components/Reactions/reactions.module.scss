@@ -10,11 +10,15 @@
     align-items: center;
 
     .reactionButtons {
-        width:40%;
+        width:70%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        
+        @media screen and (min-width:1000px) {
+            width:40%;
+        }
     }
 
     // button {
