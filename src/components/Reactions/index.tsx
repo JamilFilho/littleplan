@@ -6,15 +6,16 @@ export function Reactions(props) {
    <>
     <section className={styles.reactions}>
         <div className={styles.reactionButtons}>
-        <ClapButton 
-            id={props.buttonId}
-            namespace="clap-post" 
-            component={ClapButton.templates.Medium}
-        />
         <LikeButton
             id={props.buttonId}
             namespace="like-post"
             component={LikeButton.templates.Twitter}
+        />
+        
+        <ClapButton 
+            id={props.buttonId}
+            namespace="clap-post" 
+            component={ClapButton.templates.Medium}
         />
         </div>
     </section>
