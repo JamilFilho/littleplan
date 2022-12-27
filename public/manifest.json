@@ -3,11 +3,11 @@
     "name": "Little Plan",
     "lang": "pt",
     "description": "Leia a Bíblia em 365 dias",
-    "background_color": "#3B75D3",
-    "theme_color": "#3B75D3",
+    "background_color": "#3b75d3",
+    "theme_color": "#3b75d3",
     "dir": "ltr",
     "display": "standalone",
-    "orientation": "landscape",
+    "orientation": "portrait",
     "icons": [
       {
         "src": "/icons/android-icon-192x192.png",
