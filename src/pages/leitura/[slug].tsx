@@ -10,6 +10,7 @@ import Head from "next/head"
 import { FiPlayCircle, FiDownload } from "react-icons/fi"
 import {Reactions} from '../../components/Reactions'
 import {PageWithComments} from '../../components/Comment'
+import { ShareButtons } from "../../components/Sharer"
 
 type Episode = {
   id: string;
@@ -69,6 +70,8 @@ export default function Episode({ episode }: EpisodeProps ) {
             episode.content
           }} 
         />
+
+        <ShareButtons title={episode.title} url={episode.id}/>
       </div>
 
       <Reactions buttonId={episode.id}/>

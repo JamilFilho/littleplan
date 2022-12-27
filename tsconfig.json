@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/Sharer/index.js"  ],
   "exclude": [
     "node_modules"
   ]
