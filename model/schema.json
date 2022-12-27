@@ -1,0 +1,37 @@
+{
+    ":name": "Little Plan",
+    ":description": "Schema Little Plan",
+    "id": {
+        ":description": "Slug",
+        ":type": "line"
+    },
+    "title": {
+        ":description":"Título da Leitura",
+        ":type": "line"
+    },
+    "members": {
+        ":description":"Membros participantes",
+        ":type":"line"
+    },
+    "published_at": {
+        ":description":"Data e hora da publicação",
+        ":type":"line"
+    },
+    "thumbnail": {
+        ":description":"Thumbnail",
+        ":type":"line"
+    },
+    "description": {
+        ":description":"Descrição da leitura",
+        "lineWithFormatting": {":type": "line", ":richtext": true}
+    },
+    "content":{
+        ":description":"Conteúdo da Leitura",
+        "textWithFormatting": {":type": "text", ":richtext": true}
+    },
+    "file":{
+        "url":{":type":"line"},
+        "type":{":type":"line"},
+        "duration":{":type":"line"}
+    }
+}
