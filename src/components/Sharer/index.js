@@ -10,7 +10,7 @@ export function ShareButtons({title, url}) {
                 <FaFacebook />
             </button>
             
-            <button data-sharer="twitter" data-title={title} data-via="CadaManha" data-url={`https://plan.littleson.com.br/${url}`} className={styles.shareButton}>
+            <button data-sharer="twitter" data-title={title} data-via="um_littleson" data-url={`https://plan.littleson.com.br/${url}`} className={styles.shareButton}>
                 <FaTwitter />
             </button>
             
