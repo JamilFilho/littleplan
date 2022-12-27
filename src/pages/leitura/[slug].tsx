@@ -134,6 +134,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       episode
     },
-    revalidate: 60 * 60 * 24 //24 hours
+    revalidate: 60 * 60
   }
 }
