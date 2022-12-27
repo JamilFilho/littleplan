@@ -23,11 +23,13 @@
   },
   "description": {
       ":description":"Descrição da leitura",
-      "lineWithFormatting": {":type": "line", ":richtext": true}
+      ":type": "line", 
+      ":richtext": true
   },
   "content":{
       ":description":"Conteúdo da Leitura",
-      "textWithFormatting": {":type": "text", ":richtext": true}
+      ":type": "text", 
+      ":richtext": true
   },
   "file":{
       "url":{":type":"line"},
