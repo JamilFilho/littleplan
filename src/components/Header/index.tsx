@@ -10,7 +10,7 @@ export function Header() {
 
   return (
     <header className={styles.headerContainer}>
-      <Link href="/">
+      <Link href="/" legacyBehavior>
         <img src="/logo.svg" alt="Little Plan"/>
       </Link>
       
@@ -18,5 +18,5 @@ export function Header() {
 
       <span>feito com ❤</span>
     </header>
-  )
+  );
 }

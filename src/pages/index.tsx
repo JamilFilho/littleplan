@@ -30,69 +30,67 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
   const episodeList = [...latestEpisodes, ...allEpisodes];
 
-  return (
-    <>
-    <Head>
-      <title>Home | #LittlePlan</title>
-    </Head>
-    
-    <div className={styles.homepage}>
-      <div className={styles.inner}>
-        <section className={styles.latestEpisodes}>
-          <h2>Leitura de hoje</h2>
+  return <>
+  <Head>
+    <title>Home | #LittlePlan</title>
+  </Head>
+  
+  <div className={styles.homepage}>
+    <div className={styles.inner}>
+      <section className={styles.latestEpisodes}>
+        <h2>Leitura de hoje</h2>
 
-          <ul>
-            {latestEpisodes.map((episode, index) => (
-              <li key={episode.id}>
-                <div className={styles.episodeDetails}>
-                  <Link href={`/leitura/${episode.id}`} passHref>
-                    <a>{episode.title}</a>
-                  </Link>
-                  <p>{episode.description}</p>
-                  <span>{episode.publishedAt}</span>
-                  <span>{episode.durationAsString}</span>
-                </div>
-
-                <button type="button" onClick={() => playList(episodeList, index)}>
-                  <FiPlayCircle />
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className={styles.plannerDonwload}>
-          <header>
-            <h4>Baixe e imprima o plano de leitura</h4>
-          </header>
-          <div>
-            <a href="" title="Apoie" rel="noreferrer noopener" className={styles.download}>
-              <FiDownload /> Faça download do pdf
-            </a> 
-          </div>
-        </section>
-
-        <section className={styles.allEpisodes}>
-          <h2>Leituras passadas</h2>
-          <ul>
-            {allEpisodes.map((episode, index) => (
+        <ul>
+          {latestEpisodes.map((episode, index) => (
             <li key={episode.id}>
-              <Link href={`/leitura/${episode.id}`} passHref>
-                <a href={`/leitura/${episode.id}`}>{episode.title}</a>
-              </Link>
-              <p>{episode.publishedAt}</p>
-              <p>{episode.durationAsString}</p>
-              <button onClick={() => playList(episodeList, index + latestEpisodes.length)}>
+              <div className={styles.episodeDetails}>
+                <Link href={`/leitura/${episode.id}`} passHref>
+                  {episode.title}
+                </Link>
+                <p>{episode.description}</p>
+                <span>{episode.publishedAt}</span>
+                <span>{episode.durationAsString}</span>
+              </div>
+
+              <button type="button" onClick={() => playList(episodeList, index)}>
                 <FiPlayCircle />
               </button>
             </li>
-            ))}
-          </ul>
-        </section>
-      </div>
+          ))}
+        </ul>
+      </section>
+
+      <section className={styles.plannerDonwload}>
+        <header>
+          <h4>Baixe e imprima o plano de leitura</h4>
+        </header>
+        <div>
+          <a href="" title="Apoie" rel="noreferrer noopener" className={styles.download}>
+            <FiDownload /> Faça download do pdf
+          </a> 
+        </div>
+      </section>
+
+      <section className={styles.allEpisodes}>
+        <h2>Leituras passadas</h2>
+        <ul>
+          {allEpisodes.map((episode, index) => (
+          <li key={episode.id}>
+            <Link href={`/leitura/${episode.id}`} passHref>
+              {episode.title}
+            </Link>
+            <p>{episode.publishedAt}</p>
+            <p>{episode.durationAsString}</p>
+            <button onClick={() => playList(episodeList, index + latestEpisodes.length)}>
+              <FiPlayCircle />
+            </button>
+          </li>
+          ))}
+        </ul>
+      </section>
     </div>
-  </>
-  )
+  </div>
+</>;
 }
 
 export const getStaticProps: GetServerSideProps = async () => {
