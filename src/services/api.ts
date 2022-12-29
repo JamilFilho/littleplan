@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: "https://my-json-server.typicode.com/JamilFilho/littleplan/db"
+  baseURL: "https://raw.githubusercontent.com/JamilFilho/littleplan/main/db.json"
 })
