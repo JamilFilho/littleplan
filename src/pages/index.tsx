@@ -65,8 +65,8 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
           <h4>Baixe e imprima o plano de leitura</h4>
         </header>
         <div>
-          <a href="" title="Apoie" rel="noreferrer noopener" className={styles.download}>
-            <FiDownload /> Faça download do pdf
+          <a href="#" title="Faça download do pdf" rel="noreferrer noopener" className={styles.download}>
+            <FiDownload /> Faça download do pdf [em breve]
           </a> 
         </div>
       </section>
