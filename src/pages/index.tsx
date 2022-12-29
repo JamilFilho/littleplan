@@ -125,6 +125,6 @@ export const getStaticProps: GetServerSideProps = async () => {
       latestEpisodes,
       allEpisodes
     },
-    revalidate: 60 * 60
+    revalidate: 60 * 60 * 8
   }
 }
