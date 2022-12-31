@@ -38,7 +38,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   <div className={styles.homepage}>
     <div className={styles.inner}>
       <section className={styles.latestEpisodes}>
-        <h2>Leitura de hoje</h2>
+        <h2>Leituras de hoje</h2>
 
         <ul>
           {latestEpisodes.map((episode, index) => (
@@ -115,8 +115,8 @@ export const getStaticProps: GetServerSideProps = async () => {
     url: episode.file.url,
   }))
 
-  const latestEpisodes = episodes.slice(0, 1);
-  const allEpisodes = episodes.slice(1, episodes.length)
+  const latestEpisodes = episodes.slice(0, 4);
+  const allEpisodes = episodes.slice(4, episodes.length)
 
   return {
     props: {
