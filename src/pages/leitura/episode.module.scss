@@ -19,45 +19,6 @@
     }
   }
 
-  .thumbnailContainer {
-    position: relative;
-
-    img {
-      border-radius: 1rem;
-    }
-
-    button {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 0.75rem;
-      border: 0;
-
-      position: absolute;
-      z-index: 5;
-      font-size: 0;
-
-      transition: filter 0.2s;
-
-      &:first-child {
-        left: 0;
-        top: 50%;
-        background: var(--purple-500);
-        transform: translate(-50%, -50%);
-      }
-
-      &:last-child {
-        right: 0;
-        top: 50%;
-        background: var(--green-500);
-        transform: translate(50%, -50%);
-      }
-
-      &:hover {
-        filter: brightness(0.9);
-      }
-    }
-  }
-
   header {
     margin-bottom:1rem;
     padding-bottom: 1rem;
@@ -152,6 +113,43 @@
 
     p {
       margin: 1.5rem 0;
+    }
+
+    hr {
+      border:1px dashed rgba(0,0,0,.1);
+      margin:2rem 0 2rem;
+    }
+
+    blockquote {
+      position: relative;
+      p {
+        margin:.5rem 0 0 0;
+
+        sup {
+          margin:0 .4rem 0 0;
+          font-weight: 600;
+          font-size: .8rem;
+          vertical-align:super;
+        }
+
+        &:last-of-type {
+          margin-bottom:1rem;
+        }
+      }
+
+      cite {
+        font-weight: 600;
+      }
+
+      ::before {
+        position:absolute;
+        top:0;
+        left:-1rem;
+        width:.2rem;
+        height: 100%;
+        content:'';
+        background:var(--gray-100);
+      }
     }
   }
 
