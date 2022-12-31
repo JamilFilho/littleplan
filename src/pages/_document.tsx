@@ -28,19 +28,6 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
-
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:url" content="https://plan.littleson.com.br" />
-          <meta name="twitter:title" content="Little Plan" />
-          <meta name="twitter:description" content="Leia a Bíblia em 365 dias" />
-          <meta name="twitter:image" content="https://plan.littleson.com.br/icons/android-icon-192-192.png" />
-          <meta name="twitter:creator" content="@um_littleson" />
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content="Little Plan" />
-          <meta property="og:description" content="Leia a Bíblia em 365 dias" />
-          <meta property="og:site_name" content="Little Plan" />
-          <meta property="og:url" content="https://plan.littleson.com.br" />
-          <meta property="og:image" content="https://plan.littleson.com.br/icons/apple-icon-1024.png" />
         </Head>
         <body>
           <Main />
