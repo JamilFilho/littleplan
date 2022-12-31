@@ -39,7 +39,7 @@ export default function Episode({ episode }: EpisodeProps ) {
   return (
     <>
     <Head>
-      <title>{episode.title} | Podcastr</title>
+      <title>{episode.title} | #LittlePlan</title>
     </Head>
     
     <div className={styles.episode}>
