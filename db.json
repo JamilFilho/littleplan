@@ -1,6 +1,20 @@
 {
   "episodes": [
     {
+      "id": "leitura-dia-01-salmos-e-literatura-de-sabedoria",      
+      "title": "Dia #001 - Eclesiastes 3:1-8",
+      "members": "Jamil Filho",
+      "published_at": "2023-01-01 06:00:00",
+      "thumbnail": "/thumbnails/salmos-sabedoria.jpg",
+      "description": "",
+      "content":"<h4>Salmos e Literatura de Sabedoria</h4><blockquote><p><sup>1.</sup>Para tudo há uma ocasião, e um tempo para cada propósito debaixo do céu:</p><p><sup>2.</sup>tempo de nascer e tempo de morrer, tempo de plantar e tempo de arrancar o que se plantou,</p><p><sup>3.</sup>tempo de matar e tempo de curar, tempo de derrubar e tempo de construir,</p><p><sup>4.</sup>tempo de chorar e tempo de rir, tempo de prantear e tempo de dançar,</p><p><sup>5.</sup>tempo de espalhar pedras e tempo de ajuntá-las, tempo de abraçar e tempo de se conter,</p><p><sup>6.</sup>tempo de procurar e tempo de desistir, tempo de guardar e tempo de lançar fora,</p><p><sup>7.</sup>tempo de rasgar e tempo de costurar, tempo de calar e tempo de falar,</p><p><sup>8.</sup>tempo de amar e tempo de odiar, tempo de lutar e tempo de viver em paz.</p><cite>Eclesiastes 3:1-8</cite></blockquote>",
+      "file": {
+        "url": "/audios/dia-01-sabedoria.mp3",
+        "type": "audio/x-m4a",
+        "duration": "82"
+      }
+    },
+    {
       "id": "apresentacao-projeto-little-plan",      
       "title": "Dia #000 - Apresentação do Little Plan",
       "members": "Jamil Filho",
