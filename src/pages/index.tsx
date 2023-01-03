@@ -109,7 +109,7 @@ export const getStaticProps: GetServerSideProps = async () => {
   const response = await api.get('/episodios?populate=*', {
     params: {
       _limit: 12,
-      _sort: 'publishedAt',
+      _sort: 'episodePublishedAt',
       _order: 'desc'
     }
   })
@@ -121,7 +121,7 @@ export const getStaticProps: GetServerSideProps = async () => {
     return {
       slug: episode.attributes.epid,
       title: episode.attributes.title,
-      publishedAt: format(parseISO(episode.attributes.publishedAt), 'dd MMMM yyyy', { 
+      publishedAt: format(parseISO(episode.attributes.episodePublishedAt), 'dd MMMM yyyy', { 
         locale: ptBR
       }),
       thumbnail: episode.attributes.thumbnail,

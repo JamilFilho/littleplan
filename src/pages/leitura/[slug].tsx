@@ -139,7 +139,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     slug: responseData.epid,
     title: responseData.title,
     thumbnail: responseData.thumbnail,
-    publishedAt: format(parseISO(responseData.publishedAt), 'dd MMMM yyyy', { 
+    publishedAt: format(parseISO(responseData.episodePublishedAt), 'dd MMMM yyyy', { 
       locale: ptBR
     }),
     duration: Number(responseData.file.duration),
