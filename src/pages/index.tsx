@@ -106,13 +106,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 }
 
 export const getStaticProps: GetServerSideProps = async () => {
-  const response = await api.get('/episodios?populate=*', {
-    params: {
-      _limit: 12,
-      _sort: 'episodePublishedAt',
-      _order: 'desc'
-    }
-  })
+  const response = await api.get('/episodios?populate=*&%3Aasc')
 
   const responseData = response.data
   const espisodeData = responseData.data  
@@ -121,7 +115,7 @@ export const getStaticProps: GetServerSideProps = async () => {
     return {
       slug: episode.attributes.epid,
       title: episode.attributes.title,
-      publishedAt: format(parseISO(episode.attributes.episodePublishedAt), 'dd MMMM yyyy', { 
+      publishedAt: format(parseISO(episode.attributes.episodePublishedAt), 'dd MMMM yyyy', {
         locale: ptBR
       }),
       thumbnail: episode.attributes.thumbnail,
