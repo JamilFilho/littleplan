@@ -110,7 +110,7 @@ export const getStaticProps: GetServerSideProps = async () => {
     params: {
       _limit: 12,
       _sort: 'publishedAt',
-      // _order: 'desc'
+      _order: 'desc'
     }
   })
 

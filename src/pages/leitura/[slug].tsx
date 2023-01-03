@@ -135,9 +135,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   const { data } = await api.get(`/episodios?filters[epid][$eq]=${slug}&populate=*`)
   const responseData = data.data[0].attributes
-
-  console.log(responseData.epid)
-
   const episode = {
     slug: responseData.epid,
     title: responseData.title,
@@ -149,8 +146,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     durationAsString: convertDurationToTimeString(Number(responseData.file.duration)),
     description: responseData.description,
     content:responseData.content,
-    url: responseData.file.url,
+    url:responseData.file.url,
   }
+
+  console.log(episode.thumbnail)
 
   return {
     props: {
