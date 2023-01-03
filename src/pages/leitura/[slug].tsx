@@ -51,7 +51,7 @@ export default function Episode({ episode }: EpisodeProps ) {
       <meta property="og:title" content={`${episode.title} | #LittlePlan`} />
       <meta property="og:description" content="Leia a Bíblia em 365 dias" />
       <meta property="og:site_name" content="Little Plan" />
-      <meta property="og:url" content={`https://plan.littleson.com.br/leitura/${episode.id}`} />
+      <meta property="og:url" content={`https://plan.littleson.com.br/leitura/${episode.slug}`} />
       <meta property="og:image" content={episode.thumbnail} />
     </Head>
     
