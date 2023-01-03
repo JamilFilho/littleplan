@@ -10,7 +10,7 @@ import Head from "next/head"
 import { FiPlayCircle, FiDownload } from "react-icons/fi"
 
 type Episode = {
-  id: string;
+  slug: string;
   title: string;
   thumbnail: string;
   description: string;
@@ -54,9 +54,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
         <ul>
           {latestEpisodes.map((episode, index) => (
-            <li key={episode.id}>
+            <li key={episode.slug}>
               <div className={styles.episodeDetails}>
-                <Link href={`/leitura/${episode.id}`} passHref>
+                <Link href={`/leitura/${episode.slug}`} passHref>
                   {episode.title}
                 </Link>
                 <p>{episode.description}</p>
@@ -87,8 +87,8 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
         <h2>Leituras passadas</h2>
         <ul>
           {allEpisodes.map((episode, index) => (
-          <li key={episode.id}>
-            <Link href={`/leitura/${episode.id}`} passHref>
+          <li key={episode.slug}>
+            <Link href={`/leitura/${episode.slug}`} passHref>
               {episode.title}
             </Link>
             <p>{episode.publishedAt}</p>
@@ -106,26 +106,31 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 }
 
 export const getStaticProps: GetServerSideProps = async () => {
-  const { data } = await api.get('/episodes', {
+  const response = await api.get('/episodios?populate=*', {
     params: {
       _limit: 12,
-      _sort: 'published_at',
-      _order: 'desc'
+      _sort: 'publishedAt',
+      // _order: 'desc'
     }
   })
 
-  const episodes = data.map(episode => ({
-    id: episode.id,
-    title: episode.title,
-    thumbnail: episode.thumbnail,
-    description: episode.description,
-    publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { 
-      locale: ptBR
-    }),
-    duration: Number(episode.file.duration),
-    durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
-    url: episode.file.url,
-  }))
+  const responseData = response.data
+  const espisodeData = responseData.data  
+
+  const episodes = espisodeData.map(episode => {    
+    return {
+      slug: episode.attributes.epid,
+      title: episode.attributes.title,
+      publishedAt: format(parseISO(episode.attributes.publishedAt), 'dd MMMM yyyy', { 
+        locale: ptBR
+      }),
+      thumbnail: episode.attributes.thumbnail,
+      description: episode.attributes.description,
+      url: episode.attributes.file.url,
+      duration: Number(episode.attributes.file.duration),
+      durationAsString: convertDurationToTimeString(Number(episode.attributes.file.duration))
+    }
+  })
 
   const latestEpisodes = episodes.slice(0, 4);
   const allEpisodes = episodes.slice(4, episodes.length)
@@ -135,6 +140,6 @@ export const getStaticProps: GetServerSideProps = async () => {
       latestEpisodes,
       allEpisodes
     },
-    // revalidate: 60 * 60 
+    revalidate: 60 * 20 * 1
   }
 }

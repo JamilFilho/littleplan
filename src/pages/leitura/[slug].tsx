@@ -13,7 +13,7 @@ import {PageWithComments} from '../../components/Comment'
 import { ShareButtons } from "../../components/Sharer"
 
 type Episode = {
-  id: string;
+  slug: string;
   title: string;
   thumbnail: string;
   description: string;
@@ -71,7 +71,7 @@ export default function Episode({ episode }: EpisodeProps ) {
             Ouvir leitura
           </button>
           
-          <a href={episode.url} className={styles.download} download={episode.id}>
+          <a href={episode.url} className={styles.download} download={episode.slug}>
             <FiDownload />
           </a>
         </div>
@@ -84,10 +84,10 @@ export default function Episode({ episode }: EpisodeProps ) {
           }} 
         />
 
-        <ShareButtons title={`${episode.title} | LittlePlan`} url={episode.id}/>
+        <ShareButtons title={`${episode.title} | LittlePlan`} url={episode.slug}/>
       </div>
 
-      <Reactions buttonId={episode.id}/>
+      <Reactions buttonId={episode.slug}/>
 
       <section className={styles.cta}>
         <header>
@@ -107,17 +107,20 @@ export default function Episode({ episode }: EpisodeProps ) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await api.get('episodes', {
+  const response = await api.get('/episodios?populate=*', {
     params: {
-      __limit: 2,
-      __sort: 'published_at',
-      __order: 'desc'
+      _limit: 2,
+      _sort: 'publishedAt',
+      // _order: 'desc'
     }
   })
 
-  const paths = data.map(episode => ({
+  const responseData = response.data
+  const espisodeData = responseData.data  
+
+  const paths = espisodeData.map(episode => ({
     params: {
-      slug: episode.id
+      slug: episode.attributes.epid
     }
   }))
 
@@ -130,20 +133,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = ctx.params;
 
-  const { data } = await api.get(`/episodes/${slug}`);
+  const { data } = await api.get(`/episodios?filters[epid][$eq]=${slug}&populate=*`)
+  const responseData = data.data[0].attributes
+
+  console.log(responseData.epid)
 
   const episode = {
-    id: data.id,
-    title: data.title,
-    thumbnail: data.thumbnail,
-    publishedAt: format(parseISO(data.published_at), 'd MMMM yyyy', { 
+    slug: responseData.epid,
+    title: responseData.title,
+    thumbnail: responseData.thumbnail,
+    publishedAt: format(parseISO(responseData.publishedAt), 'dd MMMM yyyy', { 
       locale: ptBR
     }),
-    duration: Number(data.file.duration),
-    durationAsString: convertDurationToTimeString(Number(data.file.duration)),
-    description: data.description,
-    content:data.content,
-    url: data.file.url,
+    duration: Number(responseData.file.duration),
+    durationAsString: convertDurationToTimeString(Number(responseData.file.duration)),
+    description: responseData.description,
+    content:responseData.content,
+    url: responseData.file.url,
   }
 
   return {

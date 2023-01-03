@@ -2,7 +2,7 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
 type Episode = {
-  id: string;
+  slug: string;
   title: string;
   thumbnail: string;
   duration: number;
