@@ -106,7 +106,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 }
 
 export const getStaticProps: GetServerSideProps = async () => {
-  const response = await api.get('/episodios?populate=*&%3Aasc')
+  const response = await api.get('episodios?populate=*&sort[0]=id%3Adesc')
 
   const responseData = response.data
   const espisodeData = responseData.data  
