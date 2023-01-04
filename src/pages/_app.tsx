@@ -5,6 +5,7 @@ import { Player } from '../components/Player'
 import styles from '../styles/app.module.scss'
 import { PlayerContextProvider } from '../contexts/PlayerContext'
 import { Provider } from '@lyket/react'
+import { Analytics } from '@vercel/analytics/react'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }) {
           </div>
         </Provider>
       </PlayerContextProvider>
+      <Analytics />
     </>
   )
 }
