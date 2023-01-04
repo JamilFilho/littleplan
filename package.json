@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lyket/react": "^2.0.0",
+    "@vercel/analytics": "^0.1.6",
     "axios": "^0.21.1",
     "commentbox.io": "^2.1.0",
     "date-fns": "^2.21.1",
