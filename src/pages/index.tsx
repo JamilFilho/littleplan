@@ -59,7 +59,11 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 <Link href={`/leitura/${episode.slug}`} passHref>
                   {episode.title}
                 </Link>
-                <p>{episode.description}</p>
+                <div 
+                dangerouslySetInnerHTML={{
+                  __html:
+                  episode.description
+                }} />
                 <span>{episode.publishedAt}</span>
                 <span>{episode.durationAsString}</span>
               </div>

@@ -59,7 +59,11 @@ export default function Episode({ episode }: EpisodeProps ) {
       <div className={styles.inner}>
         <header>
           <h1>{episode.title}</h1>
-          <p>{episode.description}</p>
+          <div 
+          dangerouslySetInnerHTML={{
+            __html:
+            episode.description
+          }} />
           <span><strong>Publicado em:</strong> {episode.publishedAt}</span>
           <span><strong>Duração:</strong> {episode.durationAsString}</span>
         </header>
