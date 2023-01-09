@@ -59,7 +59,7 @@ export default function Episode({ episode }: EpisodeProps ) {
       <div className={styles.inner}>
         <header>
           <h1>{episode.title}</h1>
-          <div 
+          <div className={styles.episodeDescription}
           dangerouslySetInnerHTML={{
             __html:
             episode.description

@@ -59,7 +59,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 <Link href={`/leitura/${episode.slug}`} passHref>
                   {episode.title}
                 </Link>
-                <div 
+                <div className={styles.episodeDescription}
                 dangerouslySetInnerHTML={{
                   __html:
                   episode.description
